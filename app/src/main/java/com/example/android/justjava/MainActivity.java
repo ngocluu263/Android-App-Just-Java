@@ -3,6 +3,7 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 /**
@@ -38,10 +39,11 @@ public class MainActivity extends ActionBarActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-//        int price = calculatePrice();
-//        String priceMessage = "Total: $" + price + "\nThank you!";
-        String message = createOrderSummary(5);
-        displayMessage(message);
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+        int price = calculatePrice();
+        String printMessage = createOrderSummary(price, hasWhippedCream);
+        displayMessage(printMessage);
     }
 
     /**
@@ -71,10 +73,11 @@ public class MainActivity extends ActionBarActivity {
         return price;
     }
 
-    public String createOrderSummary(int price) {
-        String orderSummary = "Name: Kaptain Kunal";
-        orderSummary += "\nQuantity:" + quantity;
-        orderSummary += "\nTotal: $" + calculatePrice();
+    public String createOrderSummary(int price, boolean hasWhippedCream) {
+        String orderSummary = "Name: Chuiwen Ma";
+        orderSummary += "\nAdd whipped cream? " + hasWhippedCream;
+        orderSummary += "\nQuantity: " + quantity;
+        orderSummary += "\nTotal: $" + price;
         orderSummary += "\nThank you!";
         return orderSummary;
     }
